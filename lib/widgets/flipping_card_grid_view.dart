@@ -3,7 +3,7 @@ import 'package:del_flip_card_game/widgets/flipping_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class FlippingCardGridView extends StatefulWidget {
-  FlippingCardGridView({Key? key}) : super(key: key);
+  const FlippingCardGridView({Key? key}) : super(key: key);
 
   @override
   State<FlippingCardGridView> createState() => _FlippingCardGridViewState();
@@ -28,11 +28,9 @@ class _FlippingCardGridViewState extends State<FlippingCardGridView> {
                 cardList.setPrev(index);
               } else {
                 if (cardList.isMatch(index)) {
-                  print('match');
                   cardList.markCardsAsMatched(index);
                   cardList.resetPrev();
                 } else {
-                  print('no match');
                   wait().then((_) {
                     if (mounted) {
                       setState(() {
@@ -52,7 +50,10 @@ class _FlippingCardGridViewState extends State<FlippingCardGridView> {
   }
 
   wait() async {
-    print('wait');
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(
+      const Duration(
+        seconds: 1,
+      ),
+    );
   }
 }

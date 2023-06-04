@@ -35,7 +35,6 @@ class CardList {
     return _list[index].label == _list[_prev].label;
   }
 
-
   void resetPrev() {
     _prev = -1;
   }
@@ -54,5 +53,4 @@ class CardList {
   bool isNotClickable(int index) {
     return index == _prev || _list[index].isFlipped || _list[index].isMatched;
   }
-
 }
