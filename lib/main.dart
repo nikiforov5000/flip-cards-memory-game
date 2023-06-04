@@ -1,3 +1,4 @@
+import 'package:del_flip_card_game/widgets/card_grid_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,6 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      home: Scaffold(
+        body: CardGridView(),
+      ),
+    );
   }
 }
