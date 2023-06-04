@@ -30,11 +30,18 @@ class _FlippingCardGridViewState extends State<FlippingCardGridView> {
                 if (cardList.isMatch(index)) {
                   print('match');
                   cardList.markCardsAsMatched(index);
+                  cardList.resetPrev();
                 } else {
                   print('no match');
-                  cardList.flipCardsBack(index);
+                  wait().then((_) {
+                    if (mounted) {
+                      setState(() {
+                        cardList.flipCardsBack(index);
+                        // cardList.resetPrev();
+                      });
+                    }
+                  });
                 }
-                cardList.resetPrev();
               }
             });
           },
@@ -45,6 +52,7 @@ class _FlippingCardGridViewState extends State<FlippingCardGridView> {
   }
 
   wait() async {
+    print('wait');
     await Future.delayed(const Duration(seconds: 1));
   }
 }

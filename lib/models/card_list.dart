@@ -35,6 +35,7 @@ class CardList {
     return _list[index].label == _list[_prev].label;
   }
 
+
   void resetPrev() {
     _prev = -1;
   }
@@ -44,19 +45,14 @@ class CardList {
     _list[_prev].isMatched = true;
   }
 
-  flipCardsBack(int index) async {
-    await wait().then((_) {
-      _list[index].isFlipped = false;
-      _list[_prev].isFlipped = false;
-    });
+  void flipCardsBack(int index) {
+    _list[index].isFlipped = false;
+    _list[_prev].isFlipped = false;
+    resetPrev();
   }
 
   bool isNotClickable(int index) {
-    return index == _prev || _list[index].isFlipped || _list[index].isMatched; 
+    return index == _prev || _list[index].isFlipped || _list[index].isMatched;
   }
 
-  Future<void> wait() async {
-    print('wait');
-    await Future.delayed(Duration(seconds: 1));
-  }
 }
