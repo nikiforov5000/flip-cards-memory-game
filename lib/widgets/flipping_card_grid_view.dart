@@ -1,4 +1,4 @@
-import 'package:del_flip_card_game/models/flipping_card.dart';
+import 'package:del_flip_card_game/models/card_list.dart';
 import 'package:del_flip_card_game/widgets/flipping_card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -10,32 +10,41 @@ class FlippingCardGridView extends StatefulWidget {
 }
 
 class _FlippingCardGridViewState extends State<FlippingCardGridView> {
-
-  List<FlippingCard> list = [];
-  @override
-  void initState() {
-    seedCardList();
-    super.initState();
-  }
+  CardList cardList = CardList();
 
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 4,
-      children: list.map((card) {
+      children: List.generate(cardList.length, (index) {
         return FlippingCardWidget(
-          onTap: () {},
-          card: card,
+          onTap: () {
+            if (cardList.isNotClickable(index)) {
+              return;
+            }
+            setState(() {
+              cardList.flipCard(index);
+              if (cardList.noPrevCard) {
+                cardList.setPrev(index);
+              } else {
+                if (cardList.isMatch(index)) {
+                  print('match');
+                  cardList.markCardsAsMatched(index);
+                } else {
+                  print('no match');
+                  cardList.flipCardsBack(index);
+                }
+                cardList.resetPrev();
+              }
+            });
+          },
+          card: cardList.list[index],
         );
-      }).toList(),
+      }),
     );
   }
 
-  void seedCardList() {
-    for (int i = 0; i < 8; ++i) {
-      list.add(FlippingCard(i + 1));
-      list.add(FlippingCard(i + 1));
-    }
-    list.shuffle();
+  wait() async {
+    await Future.delayed(const Duration(seconds: 1));
   }
 }

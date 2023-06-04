@@ -20,11 +20,16 @@ class FlippingCardWidget extends StatelessWidget {
     );
   }
 
-  Text getFace() {
-    return Text(card.label.toString());
+  Widget getFace() {
+    return Column(
+      children: [
+        card.isMatched ? Text('Matched') : SizedBox(),
+        Text(card.label.toString()),
+      ],
+    );
   }
 
   Text getBack() {
-    return Text('back');
+    return Text('${card.label}\'s back');
   }
 }
