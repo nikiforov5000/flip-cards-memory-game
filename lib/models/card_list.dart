@@ -7,9 +7,13 @@ class CardList {
 
   int length = 16;
 
+  int solved = 0;
+
   CardList() {
     _seedCardList();
   }
+
+  get scores => solved / length;
 
   get list => _list;
 
@@ -24,6 +28,7 @@ class CardList {
   }
 
   void flipCard(int index) {
+    solved++;
     _list[index].isFlipped = true;
   }
 
@@ -45,6 +50,8 @@ class CardList {
   }
 
   void flipCardsBack(int index) {
+    solved--;
+    solved--;
     _list[index].isFlipped = false;
     _list[_prev].isFlipped = false;
     resetPrev();
@@ -52,5 +59,24 @@ class CardList {
 
   bool isNotClickable(int index) {
     return index == _prev || _list[index].isFlipped || _list[index].isMatched;
+  }
+
+  bool isTappedMoreThanTwo() {
+    if (_prev != -1 && flippedButNotMatched()) {
+      return true;
+    }
+    return false;
+  }
+
+  bool flippedButNotMatched() {
+    int count = 0;
+    for (FlippingCard card in _list) {
+      if (!card.isMatched && card.isFlipped) {
+        if (++count == 2) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }
