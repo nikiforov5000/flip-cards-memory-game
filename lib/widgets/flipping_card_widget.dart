@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:del_flip_card_game/models/card.dart';
+import 'package:del_flip_card_game/models/flipping_card.dart';
 
 class FlippingCardWidget extends StatelessWidget {
   final FlippingCard card;
@@ -20,11 +20,16 @@ class FlippingCardWidget extends StatelessWidget {
     );
   }
 
-  Text getFace() {
-    return Text(card.label.toString());
+  Widget getFace() {
+    return Column(
+      children: [
+        card.isMatched ? Text('Matched') : SizedBox(),
+        Text(card.label.toString()),
+      ],
+    );
   }
 
   Text getBack() {
-    return Text('back');
+    return Text('${card.label}\'s back');
   }
 }
