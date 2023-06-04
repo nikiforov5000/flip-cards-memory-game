@@ -1,4 +1,4 @@
-import 'package:del_flip_card_game/widgets/card_grid_view.dart';
+import 'package:del_flip_card_game/widgets/flipping_card_grid_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: CardGridView(),
+        body: FlippingCardGridView(),
       ),
     );
   }

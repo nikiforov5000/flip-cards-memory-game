@@ -1,15 +1,15 @@
-import 'package:del_flip_card_game/models/card.dart';
-import 'package:del_flip_card_game/widgets/card_widget.dart';
+import 'package:del_flip_card_game/models/flipping_card.dart';
+import 'package:del_flip_card_game/widgets/flipping_card_widget.dart';
 import 'package:flutter/material.dart';
 
-class CardGridView extends StatefulWidget {
-  CardGridView({Key? key}) : super(key: key);
+class FlippingCardGridView extends StatefulWidget {
+  FlippingCardGridView({Key? key}) : super(key: key);
 
   @override
-  State<CardGridView> createState() => _CardGridViewState();
+  State<FlippingCardGridView> createState() => _FlippingCardGridViewState();
 }
 
-class _CardGridViewState extends State<CardGridView> {
+class _FlippingCardGridViewState extends State<FlippingCardGridView> {
 
   List<FlippingCard> list = [];
   @override

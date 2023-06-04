@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:del_flip_card_game/models/card.dart';
+import 'package:del_flip_card_game/models/flipping_card.dart';
 
 class FlippingCardWidget extends StatelessWidget {
   final FlippingCard card;
