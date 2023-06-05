@@ -50,8 +50,11 @@ class GameController {
   }
 
   static void flipCardsBack(int index) {
-    _list[index].isFlipped = false;
-    _list[_prev].isFlipped = false;
+    for (FlippingCard card in _list) {
+      if (card.isMatched == false) {
+        card.isFlipped = false;
+      }
+    }
     resetPrev();
   }
 
