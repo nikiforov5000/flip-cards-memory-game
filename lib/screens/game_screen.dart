@@ -20,24 +20,71 @@ class _GameScreenState extends State<GameScreen> {
     return Column(
       children: [
         SizedBox(
-          height: height / 5,
+          height: height / 15,
+        ),
+        GameTitle(),
+        SizedBox(
+          height: height / 15,
         ),
         Container(
           color: Colors.green,
-          height: height / 10,
           child: const GameTimerWidget(),
+        ),
+        SizedBox(
+          height: height / 15,
         ),
         Container(
           color: Colors.yellow,
-          height: height / 10,
-          child: ScoreProgress(
-            GameController.scores,
-          ),
+          child: ScoreProgress(),
+        ),
+        SizedBox(
+          height: height / 15,
         ),
         Expanded(
-          child: CardsGrid(),
+          child: Container(
+            color: Colors.pinkAccent,
+            child: CardsGrid(),
+          ),
         ),
+        RestartButton(),
       ],
     );
   }
 }
+
+class RestartButton extends StatefulWidget {
+  const RestartButton({Key? key}) : super(key: key);
+
+  @override
+  State<RestartButton> createState() => _RestartButtonState();
+}
+
+class _RestartButtonState extends State<RestartButton> {
+  @override
+  Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          GameController.restart();
+        });
+      },
+      child: Container(
+        height: height / 20,
+        color: Colors.purpleAccent,
+        child: Center(child: Text('Restart')),
+      ),
+    );
+  }
+}
+
+
+class GameTitle extends StatelessWidget {
+  const GameTitle({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('Memory Game');
+  }
+}
+

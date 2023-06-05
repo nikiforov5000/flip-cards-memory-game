@@ -13,6 +13,8 @@ class CardsGrid extends StatefulWidget {
 class _CardsGridState extends State<CardsGrid> {
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+
     return GridView.count(
       crossAxisCount: 4,
       children: List.generate(

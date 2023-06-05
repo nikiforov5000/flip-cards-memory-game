@@ -10,12 +10,14 @@ class FlippingCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Center(
-        child: Container(
-          child: card.isFlipped ? getFace() : getBack(),
-        ),
+    final double height = MediaQuery.of(context).size.height;
+
+    return Container(
+      color: Colors.yellow,
+      margin: EdgeInsets.all(5),
+      child: GestureDetector(
+        onTap: onTap,
+        child: card.isFlipped ? getFace() : getBack(),
       ),
     );
   }

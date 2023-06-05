@@ -5,10 +5,20 @@ import 'package:flutter/foundation.dart';
 class GameTimer {
   static bool isRunning = false;
   static Timer? _timer;
-  static int _gameDuration = 300;
+  static int _gameDuration = 90;
   static int _timeLeft = _gameDuration;
   static bool gameOver = false;
   static final StreamController _controller = StreamController();
+
+  static restart() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    _timeLeft = _gameDuration;
+    gameOver = false;
+    isRunning = false;
+    _controller.add(_timeLeft);
+  }
 
   static void startTimer() {
     isRunning = true;
@@ -37,7 +47,7 @@ class GameTimer {
   static String string() {
     String seconds = (_timeLeft / 10).floor().toString();
     String oneTenth = (_timeLeft % 10).toString();
-    return '$seconds.$oneTenth';
+    return 'Time left: $seconds.$oneTenth';
   }
 
   static percentLeft() {
