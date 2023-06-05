@@ -1,25 +1,22 @@
 import 'package:del_flip_card_game/models/flipping_card.dart';
+import 'package:del_flip_card_game/models/game_timer.dart';
 
-class CardList {
-  List<FlippingCard> _list = [];
+class GameController {
+  static final List<FlippingCard> _list = [];
 
-  int _prev = -1;
+  static int _prev = -1;
 
-  int length = 16;
+  static int length = 16;
 
-  int solved = 0;
+  static int solved = 0;
 
-  CardList() {
-    _seedCardList();
-  }
+  static get scores => solved / length;
 
-  get scores => solved / length;
+  static get list => _list;
 
-  get list => _list;
+  static bool get noPrevCard => _prev == -1;
 
-  bool get noPrevCard => _prev == -1;
-
-  void _seedCardList() {
+  static void seedCardList() {
     for (int i = 0; i < length / 2; ++i) {
       _list.add(FlippingCard(i + 1));
       _list.add(FlippingCard(i + 1));
@@ -27,46 +24,49 @@ class CardList {
     _list.shuffle();
   }
 
-  void flipCard(int index) {
+  static void flipCard(int index) {
+    if (!GameTimer.isRunning) {
+      GameTimer.startTimer();
+    }
     _list[index].isFlipped = true;
   }
 
-  void setPrev(int index) {
+  static void setPrev(int index) {
     _prev = index;
   }
 
-  bool isMatch(int index) {
+  static bool isMatch(int index) {
     return _list[index].label == _list[_prev].label;
   }
 
-  void resetPrev() {
+  static void resetPrev() {
     _prev = -1;
   }
 
-  void markCardsAsMatched(int index) {
+  static void markCardsAsMatched(int index) {
     solved += 2;
     _list[index].isMatched = true;
     _list[_prev].isMatched = true;
   }
 
-  void flipCardsBack(int index) {
+  static void flipCardsBack(int index) {
     _list[index].isFlipped = false;
     _list[_prev].isFlipped = false;
     resetPrev();
   }
 
-  bool isNotClickable(int index) {
+  static bool isNotClickable(int index) {
     return index == _prev || _list[index].isFlipped || _list[index].isMatched;
   }
 
-  bool isTappedMoreThanTwo() {
+  static bool isTappedMoreThanTwo() {
     if (_prev != -1 && flippedButNotMatched()) {
       return true;
     }
     return false;
   }
 
-  bool flippedButNotMatched() {
+  static bool flippedButNotMatched() {
     int count = 0;
     for (FlippingCard card in _list) {
       if (!card.isMatched && card.isFlipped) {
