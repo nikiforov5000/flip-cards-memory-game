@@ -28,7 +28,6 @@ class CardList {
   }
 
   void flipCard(int index) {
-    solved++;
     _list[index].isFlipped = true;
   }
 
@@ -45,13 +44,12 @@ class CardList {
   }
 
   void markCardsAsMatched(int index) {
+    solved += 2;
     _list[index].isMatched = true;
     _list[_prev].isMatched = true;
   }
 
   void flipCardsBack(int index) {
-    solved--;
-    solved--;
     _list[index].isFlipped = false;
     _list[_prev].isFlipped = false;
     resetPrev();
