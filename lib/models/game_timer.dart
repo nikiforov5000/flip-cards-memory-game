@@ -1,26 +1,29 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+
 class GameTimer {
   static bool isRunning = false;
   static Timer? _timer;
   static int _start = 50;
   static bool gameOver = false;
-  static StreamController _controller = StreamController();
+  static final StreamController _controller = StreamController();
 
   static void startTimer() {
     isRunning = true;
-    const oneTenthOfSecond = const Duration(milliseconds: 100);
+    const oneTenthOfSecond = Duration(milliseconds: 100);
     _timer = Timer.periodic(
       oneTenthOfSecond,
       (Timer timer) {
-        print('game_timer.dart -> timer:$_start');
+        if (kDebugMode) {
+          print('game_timer.dart -> timer:$_start');
+        }
         if (_start < 1) {
           _controller.add(_start);
           _timer!.cancel();
           gameOver = true;
           isRunning = false;
-        }
-        else {
+        } else {
           _controller.add(_start);
           _start -= 1;
         }
@@ -35,5 +38,4 @@ class GameTimer {
     String oneTenth = (_start % 10).toString();
     return '$seconds.$oneTenth';
   }
-
 }

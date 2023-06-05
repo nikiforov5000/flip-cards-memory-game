@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:del_flip_card_game/models/flipping_card.dart';
+import 'package:flutter/material.dart';
 
 class FlippingCardWidget extends StatelessWidget {
   final FlippingCard card;
   final VoidCallback onTap;
-  const FlippingCardWidget({required this.onTap,required this.card, Key? key}) : super(key: key);
+
+  const FlippingCardWidget({required this.onTap, required this.card, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +14,7 @@ class FlippingCardWidget extends StatelessWidget {
       onTap: onTap,
       child: Center(
         child: Container(
-          child: card.isFlipped
-              ? getFace()
-              : getBack(),
+          child: card.isFlipped ? getFace() : getBack(),
         ),
       ),
     );
@@ -23,7 +23,7 @@ class FlippingCardWidget extends StatelessWidget {
   Widget getFace() {
     return Column(
       children: [
-        card.isMatched ? Text('Matched') : SizedBox(),
+        card.isMatched ? const Text('Matched') : const SizedBox(),
         Text(card.label.toString()),
       ],
     );

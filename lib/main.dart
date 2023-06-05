@@ -2,7 +2,7 @@ import 'package:del_flip_card_game/widgets/flipping_card_grid_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

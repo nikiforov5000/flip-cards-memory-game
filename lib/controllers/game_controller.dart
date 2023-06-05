@@ -2,7 +2,7 @@ import 'package:del_flip_card_game/models/flipping_card.dart';
 import 'package:del_flip_card_game/models/game_timer.dart';
 
 class GameController {
-  static List<FlippingCard> _list = [];
+  static final List<FlippingCard> _list = [];
 
   static int _prev = -1;
 
