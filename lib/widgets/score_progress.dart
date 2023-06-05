@@ -6,8 +6,13 @@ class ScoreProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LinearProgressIndicator(
-      value: _value,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        LinearProgressIndicator(
+          value: _value,
+        ),
+      ],
     );
   }
 }

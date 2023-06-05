@@ -17,6 +17,7 @@ class GameController {
   static bool get noPrevCard => _prev == -1;
 
   static void seedCardList() {
+    _list.clear();
     for (int i = 0; i < length / 2; ++i) {
       _list.add(FlippingCard(i + 1));
       _list.add(FlippingCard(i + 1));

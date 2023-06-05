@@ -8,18 +8,20 @@ class GameTimerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: GameTimer.timeStream,
-        builder: (BuildContext context, snapshot) {
-          return Stack(
-            children: [
-              Text(GameTimer.string()),
-              GameTimer.gameOver
-                  ? Text('Game Over!!! Your Score is '
-                      '${GameController.solved.toString()} '
-                      '/ ${GameController.length.toString()}')
-                  : const Text(''),
-            ],
-          );
-        });
+      stream: GameTimer.timeStream,
+      builder: (BuildContext context, snapshot) {
+        return Column(
+          children: [
+            LinearProgressIndicator(value: GameTimer.percentLeft(),),
+            Text(GameTimer.string()),
+            GameTimer.gameOver
+                ? Text('Game Over!!! Your Score is '
+                    '${GameController.solved.toString()} '
+                    '/ ${GameController.length.toString()}')
+                : const Text(''),
+          ],
+        );
+      },
+    );
   }
 }

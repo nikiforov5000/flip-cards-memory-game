@@ -1,40 +1,31 @@
 import 'package:del_flip_card_game/controllers/game_controller.dart';
 import 'package:del_flip_card_game/models/game_timer.dart';
 import 'package:del_flip_card_game/widgets/flipping_card_widget.dart';
-import 'package:del_flip_card_game/widgets/game_timer_widget.dart';
-import 'package:del_flip_card_game/widgets/score_progress.dart';
 import 'package:flutter/material.dart';
 
-class FlippingCardGridView extends StatefulWidget {
-  FlippingCardGridView({Key? key}) : super(key: key) {
-    GameController.seedCardList();
-  }
+class CardsGrid extends StatefulWidget {
+  const CardsGrid({Key? key}) : super(key: key);
 
   @override
-  State<FlippingCardGridView> createState() => _FlippingCardGridViewState();
+  State<CardsGrid> createState() => _CardsGridState();
 }
 
-class _FlippingCardGridViewState extends State<FlippingCardGridView> {
+class _CardsGridState extends State<CardsGrid> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const GameTimerWidget(),
-        ScoreProgress(GameController.scores),
-        Expanded(
-          child: GridView.count(
-            crossAxisCount: 4,
-            children: List.generate(GameController.length, (index) {
-              return FlippingCardWidget(
-                onTap: () {
-                  tapCard(index);
-                },
-                card: GameController.list[index],
-              );
-            }),
-          ),
-        ),
-      ],
+    return GridView.count(
+      crossAxisCount: 4,
+      children: List.generate(
+        GameController.length,
+        (index) {
+          return FlippingCardWidget(
+            onTap: () {
+              tapCard(index);
+            },
+            card: GameController.list[index],
+          );
+        },
+      ),
     );
   }
 
