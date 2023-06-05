@@ -7,19 +7,40 @@ class GameTimerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+
     return StreamBuilder(
-        stream: GameTimer.timeStream,
-        builder: (BuildContext context, snapshot) {
-          return Stack(
-            children: [
-              Text(GameTimer.string()),
-              GameTimer.gameOver
-                  ? Text('Game Over!!! Your Score is '
-                      '${GameController.solved.toString()} '
-                      '/ ${GameController.length.toString()}')
-                  : const Text(''),
-            ],
-          );
-        });
+      stream: GameTimer.timeStream,
+      builder: (BuildContext context, snapshot) {
+        return Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            SizedBox(
+              height: height / 20,
+              child: LinearProgressIndicator(
+                value: GameTimer.percentLeft(),
+              ),
+            ),
+            GameTimer.gameOver
+                ? GameOverTitle()
+                : Text(GameTimer.string()),
+          ],
+        );
+      },
+    );
   }
 }
+
+class GameOverTitle extends StatelessWidget {
+  GameOverTitle({Key? key}) : super(key: key);
+
+  String gameOverString = 'Game Over!!! Your Score is '
+      '${GameController.solved.toString()} '
+      '/ ${GameController.cardsQuantity.toString()}';
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(gameOverString);
+  }
+}
+

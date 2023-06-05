@@ -1,4 +1,4 @@
-import 'package:del_flip_card_game/widgets/flipping_card_grid_view.dart';
+import 'package:del_flip_card_game/screens/game_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,8 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: FlippingCardGridView(),
+        body: GameScreen(),
       ),
     );
   }

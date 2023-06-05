@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:del_flip_card_game/models/flipping_card.dart';
 import 'package:del_flip_card_game/models/game_timer.dart';
 
@@ -6,18 +8,30 @@ class GameController {
 
   static int _prev = -1;
 
-  static int length = 16;
+  static int cardsQuantity = 16;
 
   static int solved = 0;
 
-  static get scores => solved / length;
+  static StreamController<double> scoreController = StreamController();
+
+  static get scores => solved / cardsQuantity;
+  static get scoresStream => scoreController.stream;
 
   static get list => _list;
 
   static bool get noPrevCard => _prev == -1;
 
+  static restart() {
+    GameTimer.restart();
+    solved = 0;
+    scoreController.add(scores);
+    seedCardList();
+    resetPrev();
+  }
+
   static void seedCardList() {
-    for (int i = 0; i < length / 2; ++i) {
+    _list.clear();
+    for (int i = 0; i < cardsQuantity / 2; ++i) {
       _list.add(FlippingCard(i + 1));
       _list.add(FlippingCard(i + 1));
     }
@@ -45,6 +59,7 @@ class GameController {
 
   static void markCardsAsMatched(int index) {
     solved += 2;
+    scoreController.add(scores);
     _list[index].isMatched = true;
     _list[_prev].isMatched = true;
   }
