@@ -1,4 +1,5 @@
 import 'package:del_flip_card_game/models/card_list.dart';
+import 'package:del_flip_card_game/models/game_timer.dart';
 import 'package:del_flip_card_game/widgets/flipping_card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class _FlippingCardGridViewState extends State<FlippingCardGridView> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        GameTimerWidget(),
         ScoreProgress(cardList.scores),
         Expanded(
           child: GridView.count(
@@ -75,4 +77,21 @@ class ScoreProgress extends StatelessWidget {
     );
   }
 }
+
+
+class GameTimerWidget extends StatelessWidget {
+  GameTimerWidget ({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: GameTimer.timeStream,
+      builder: (BuildContext context, snapshot) {
+        return Text(GameTimer.string());
+      }
+    );
+  }
+}
+
+
 

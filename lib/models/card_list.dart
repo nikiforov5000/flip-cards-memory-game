@@ -1,4 +1,5 @@
 import 'package:del_flip_card_game/models/flipping_card.dart';
+import 'package:del_flip_card_game/models/game_timer.dart';
 
 class CardList {
   List<FlippingCard> _list = [];
@@ -28,6 +29,9 @@ class CardList {
   }
 
   void flipCard(int index) {
+    if (!GameTimer.isRunning) {
+      GameTimer.startTimer();
+    }
     _list[index].isFlipped = true;
   }
 
