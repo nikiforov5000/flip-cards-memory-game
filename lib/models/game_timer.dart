@@ -3,8 +3,8 @@ import 'dart:async';
 class GameTimer {
   static bool isRunning = false;
   static Timer? _timer;
-  static int _start = 300;
-  static bool _gameOver = false;
+  static int _start = 50;
+  static bool gameOver = false;
   static StreamController _controller = StreamController();
 
   static void startTimer() {
@@ -15,8 +15,9 @@ class GameTimer {
       (Timer timer) {
         print('game_timer.dart -> timer:$_start');
         if (_start < 1) {
+          _controller.add(_start);
           _timer!.cancel();
-          _gameOver = true;
+          gameOver = true;
           isRunning = false;
         }
         else {

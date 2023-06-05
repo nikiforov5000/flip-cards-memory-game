@@ -4,43 +4,46 @@ import 'package:del_flip_card_game/widgets/flipping_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class FlippingCardGridView extends StatefulWidget {
-  const FlippingCardGridView({Key? key}) : super(key: key);
+  FlippingCardGridView({Key? key}) : super(key: key) {
+    GameController.seedCardList();
+  }
+
 
   @override
   State<FlippingCardGridView> createState() => _FlippingCardGridViewState();
 }
 
 class _FlippingCardGridViewState extends State<FlippingCardGridView> {
-  CardList cardList = CardList();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         GameTimerWidget(),
-        ScoreProgress(cardList.scores),
+        ScoreProgress(GameController.scores),
         Expanded(
           child: GridView.count(
             crossAxisCount: 4,
-            children: List.generate(cardList.length, (index) {
+            children: List.generate(GameController.length, (index) {
               return FlippingCardWidget(
                 onTap: () {
-                  if (cardList.isNotClickable(index)) { return; }
-                  if (cardList.isTappedMoreThanTwo()) { return; }
+                  if (GameTimer.gameOver) { return; }
+                  if (GameController.isNotClickable(index)) { return; }
+                  if (GameController.isTappedMoreThanTwo()) { return; }
                   setState(() {
-                    cardList.flipCard(index);
-                    if (cardList.noPrevCard) {
-                      cardList.setPrev(index);
+                    GameController.flipCard(index);
+                    if (GameController.noPrevCard) {
+                      GameController.setPrev(index);
                     } else {
-                      if (cardList.isMatch(index)) {
-                        cardList.markCardsAsMatched(index);
-                        cardList.resetPrev();
+                      if (GameController.isMatch(index)) {
+                        GameController.markCardsAsMatched(index);
+                        GameController.resetPrev();
                       } else {
                         wait().then((_) {
                           if (mounted) {
                             setState(() {
-                              cardList.flipCardsBack(index);
-                              // cardList.resetPrev();
+                              GameController.flipCardsBack(index);
+                              // GameController.resetPrev();
                             });
                           }
                         });
@@ -48,7 +51,7 @@ class _FlippingCardGridViewState extends State<FlippingCardGridView> {
                     }
                   });
                 },
-                card: cardList.list[index],
+                card: GameController.list[index],
               );
             }),
           ),
@@ -78,7 +81,6 @@ class ScoreProgress extends StatelessWidget {
   }
 }
 
-
 class GameTimerWidget extends StatelessWidget {
   GameTimerWidget ({Key? key}) : super(key: key);
 
@@ -87,7 +89,15 @@ class GameTimerWidget extends StatelessWidget {
     return StreamBuilder(
       stream: GameTimer.timeStream,
       builder: (BuildContext context, snapshot) {
-        return Text(GameTimer.string());
+
+        return Stack(
+          children: [
+            Text(GameTimer.string()),
+            GameTimer.gameOver
+                ? Text('Game Over!!! Your Score is ${GameController.solved.toString()} / ${GameController.length.toString()}')
+                : Text(''),
+          ],
+        );
       }
     );
   }
