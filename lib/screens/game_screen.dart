@@ -47,6 +47,9 @@ class _GameScreenState extends State<GameScreen> {
           ),
         ),
         RestartButton(),
+        SizedBox(
+          height: height / 15,
+        ),
       ],
     );
   }

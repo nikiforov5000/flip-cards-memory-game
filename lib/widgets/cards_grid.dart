@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:del_flip_card_game/controllers/game_controller.dart';
 import 'package:del_flip_card_game/models/game_timer.dart';
 import 'package:del_flip_card_game/widgets/flipping_card_widget.dart';
@@ -13,21 +15,34 @@ class CardsGrid extends StatefulWidget {
 class _CardsGridState extends State<CardsGrid> {
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
+    double side = sqrt(GameController.cardsQuantity);
+    final List<Widget> col = [];
 
-    return GridView.count(
-      crossAxisCount: 4,
-      children: List.generate(
-        GameController.length,
-        (index) {
-          return FlippingCardWidget(
-            onTap: () {
+    for (int i = 0; i < side; ++i) {
+      final List<Widget> row = [];
+      for (int j = 0; j < side; ++j) {
+        int index = (i * side + j).toInt();
+        row.add(Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FlippingCardWidget(onTap: () {
               tapCard(index);
             },
-            card: GameController.list[index],
-          );
-        },
-      ),
+            card: GameController.list[index],),
+          ),
+        ),);
+      }
+      col.add(
+        Expanded(
+          child: Row(
+            children: row,
+          ),
+        ),
+      );
+    }
+
+    return Column(
+      children: col,
     );
   }
 

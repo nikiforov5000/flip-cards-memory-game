@@ -36,7 +36,7 @@ class GameOverTitle extends StatelessWidget {
 
   String gameOverString = 'Game Over!!! Your Score is '
       '${GameController.solved.toString()} '
-      '/ ${GameController.length.toString()}';
+      '/ ${GameController.cardsQuantity.toString()}';
 
   @override
   Widget build(BuildContext context) {

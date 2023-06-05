@@ -8,13 +8,13 @@ class GameController {
 
   static int _prev = -1;
 
-  static int length = 16;
+  static int cardsQuantity = 16;
 
   static int solved = 0;
 
   static StreamController<double> scoreController = StreamController();
 
-  static get scores => solved / length;
+  static get scores => solved / cardsQuantity;
   static get scoresStream => scoreController.stream;
 
   static get list => _list;
@@ -31,7 +31,7 @@ class GameController {
 
   static void seedCardList() {
     _list.clear();
-    for (int i = 0; i < length / 2; ++i) {
+    for (int i = 0; i < cardsQuantity / 2; ++i) {
       _list.add(FlippingCard(i + 1));
       _list.add(FlippingCard(i + 1));
     }
