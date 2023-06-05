@@ -46,6 +46,9 @@ class _FlippingCardGridViewState extends State<FlippingCardGridView> {
       return;
     }
     if (GameController.isTappedMoreThanTwo()) {
+      setState(() {
+        GameController.flipCardsBack(index);
+      });
       return;
     }
     setState(() {
