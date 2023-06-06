@@ -10,31 +10,41 @@ class FlippingCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
 
     return GestureDetector(
       onTap: onTap,
-      child: card.isFlipped ? getFace() : getBack(),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: card.isFlipped ? getFace() : getBack(),
+      ),
     );
   }
 
   Widget getFace() {
-    return Container(
-      color: Colors.green,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          card.isMatched ? const Text('Matched') : const SizedBox(),
-          Text(card.label.toString()),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        card.isMatched ? const Text('Matched') : const SizedBox(),
+        Text(card.label.toString()),
+      ],
     );
   }
 
   Widget getBack() {
     return Container(
-      color: Colors.grey,
-      child: Center(child: Text('${card.label}\'s back')),
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+          'assets/images/cards/back/back.png',
+            fit: BoxFit.fitWidth,
+          ),
+        ),
+      ),
     );
   }
 }
