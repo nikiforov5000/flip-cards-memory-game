@@ -15,6 +15,7 @@ class FlippingCardWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
+          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.3), offset: Offset(3,3), blurRadius: 5)],
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
@@ -24,12 +25,17 @@ class FlippingCardWidget extends StatelessWidget {
   }
 
   Widget getFace() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        card.isMatched ? const Text('Matched') : const SizedBox(),
-        Text(card.label.toString()),
-      ],
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            card.imagePath,
+            fit: BoxFit.fitWidth,
+          ),
+        ),
+      ),
     );
   }
 

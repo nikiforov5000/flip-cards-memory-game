@@ -42,7 +42,6 @@ class _GameScreenState extends State<GameScreen> {
         ),
         Expanded(
           child: Container(
-            color: Colors.pinkAccent,
             child: CardsGrid(),
           ),
         ),

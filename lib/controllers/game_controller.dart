@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:del_flip_card_game/models/flipping_card.dart';
+import 'package:del_flip_card_game/models/front_image.dart';
 import 'package:del_flip_card_game/models/game_timer.dart';
 
 class GameController {
@@ -30,10 +32,13 @@ class GameController {
   }
 
   static void seedCardList() {
+    FrontImage frontImage = FrontImage();
+
     _list.clear();
     for (int i = 0; i < cardsQuantity / 2; ++i) {
-      _list.add(FlippingCard(i + 1));
-      _list.add(FlippingCard(i + 1));
+      String imgPath = frontImage.getRandomFrontImage();
+      _list.add(FlippingCard(imagePath: imgPath, label: i + 1));
+      _list.add(FlippingCard(imagePath: imgPath, label: i + 1));
     }
     _list.shuffle();
   }

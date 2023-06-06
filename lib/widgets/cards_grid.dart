@@ -24,7 +24,7 @@ class _CardsGridState extends State<CardsGrid> {
         int index = (i * side + j).toInt();
         row.add(Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(2.0),
             child: FlippingCardWidget(onTap: () {
               tapCard(index);
             },
