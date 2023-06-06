@@ -10,12 +10,16 @@ class FlippingCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.3), offset: Offset(3,3), blurRadius: 5)],
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                offset: Offset(3, 3),
+                blurRadius: 5),
+          ],
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
@@ -46,7 +50,7 @@ class FlippingCardWidget extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-          'assets/images/cards/back/back.png',
+            'assets/images/cards/back/back.png',
             fit: BoxFit.fitWidth,
           ),
         ),

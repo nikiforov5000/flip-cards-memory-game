@@ -30,10 +30,7 @@ class _GameScreenState extends State<GameScreen> {
           SizedBox(
             height: height / 15,
           ),
-          Container(
-            color: Colors.green,
-            child: const GameTimerWidget(),
-          ),
+          const GameTimerWidget(),
           SizedBox(
             height: height / 15,
           ),

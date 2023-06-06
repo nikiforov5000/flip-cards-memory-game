@@ -1,5 +1,6 @@
 import 'package:del_flip_card_game/controllers/game_controller.dart';
 import 'package:del_flip_card_game/models/game_timer.dart';
+import 'package:del_flip_card_game/widgets/progress_bar.dart';
 import 'package:flutter/material.dart';
 
 class GameTimerWidget extends StatelessWidget {
@@ -15,12 +16,13 @@ class GameTimerWidget extends StatelessWidget {
         return Stack(
           alignment: AlignmentDirectional.center,
           children: [
-            SizedBox(
-              height: height / 20,
-              child: LinearProgressIndicator(
-                value: GameTimer.percentLeft(),
-              ),
-            ),
+            ProgressBar(value: GameTimer.percentLeft()),
+            // SizedBox(
+            //   height: height / 20,
+            //   child: LinearProgressIndicator(
+            //     value: GameTimer.percentLeft(),
+            //   ),
+            // ),
             GameTimer.gameOver
                 ? GameOverTitle()
                 : Text(GameTimer.string()),

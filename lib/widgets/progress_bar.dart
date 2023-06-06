@@ -9,19 +9,25 @@ class ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-
-    return SizedBox(
-      height: 20,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Stack(
-          alignment: AlignmentDirectional.center,
-          children: [
-            ProgressBackground(h: height),
-            ProgressForeground(height: height, value: value ?? 0),
-            // PercentNumber(value),
-          ],
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(99),
+        border: Border.all(
+          color: Color(0x99eeaa00),
+          width: 3,
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(99),
+        child: SizedBox(
+          height: 50,
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              const ProgressBackground(),
+              ProgressForeground(value: value ?? 0),
+            ],
+          ),
         ),
       ),
     );
@@ -29,11 +35,9 @@ class ProgressBar extends StatelessWidget {
 }
 
 class ProgressForeground extends StatelessWidget {
-  final double height;
   final double value;
 
   const ProgressForeground({
-    required this.height,
     required this.value,
     Key? key,
   }) : super(key: key);
@@ -47,10 +51,10 @@ class ProgressForeground extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              height: height,
               width: currentWidth,
               decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(99)),
+                color: Colors.greenAccent,
+              ),
             ),
           ],
         );
@@ -60,20 +64,15 @@ class ProgressForeground extends StatelessWidget {
 }
 
 class ProgressBackground extends StatelessWidget {
-  final double h;
-
   const ProgressBackground({
-    required this.h,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: h,
       decoration: BoxDecoration(
-        color: const Color(0xff5B5A60),
-        borderRadius: BorderRadius.circular(99),
+        color: const Color(0x666666ff),
       ),
     );
   }
