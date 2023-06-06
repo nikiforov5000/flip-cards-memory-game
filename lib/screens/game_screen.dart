@@ -17,39 +17,44 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
-    return Column(
-      children: [
-        SizedBox(
-          height: height / 15,
-        ),
-        GameTitle(),
-        SizedBox(
-          height: height / 15,
-        ),
-        Container(
-          color: Colors.green,
-          child: const GameTimerWidget(),
-        ),
-        SizedBox(
-          height: height / 15,
-        ),
-        Container(
-          color: Colors.yellow,
-          child: ScoreProgress(),
-        ),
-        SizedBox(
-          height: height / 15,
-        ),
-        Expanded(
-          child: Container(
-            child: CardsGrid(),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(image: AssetImage('assets/images/bg.jpg'), fit: BoxFit.cover)
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: height / 15,
           ),
-        ),
-        RestartButton(),
-        SizedBox(
-          height: height / 15,
-        ),
-      ],
+          GameTitle(),
+          SizedBox(
+            height: height / 15,
+          ),
+          Container(
+            color: Colors.green,
+            child: const GameTimerWidget(),
+          ),
+          SizedBox(
+            height: height / 15,
+          ),
+          Container(
+            color: Colors.yellow,
+            child: ScoreProgress(),
+          ),
+          SizedBox(
+            height: height / 15,
+          ),
+          Expanded(
+            child: Container(
+              child: CardsGrid(),
+            ),
+          ),
+          RestartButton(),
+          SizedBox(
+            height: height / 15,
+          ),
+        ],
+      ),
     );
   }
 }
