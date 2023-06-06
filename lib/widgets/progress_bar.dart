@@ -11,6 +11,12 @@ class ProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        boxShadow: [BoxShadow(
+          color: Colors.black.withOpacity(0.5),
+          offset: Offset(5, 5),
+          blurRadius: 10,
+        ),
+        ],
         borderRadius: BorderRadius.circular(99),
         border: Border.all(
           color: Color(0x99eeaa00),
