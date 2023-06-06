@@ -42,9 +42,7 @@ class _GameScreenState extends State<GameScreen> {
             height: height / 50,
           ),
           Expanded(
-            child: Container(
-              child: CardsGrid(),
-            ),
+            child: CardsGrid(),
           ),
           SizedBox(
             height: height / 50,

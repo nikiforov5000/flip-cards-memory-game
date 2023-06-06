@@ -23,37 +23,30 @@ class FlippingCardWidget extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: card.isFlipped ? getFace() : getBack(),
+        child: Padding(
+          padding: EdgeInsets.all(1),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: card.isFlipped ? getFace() : getBack(),
+          ),
+        ),
       ),
     );
   }
 
   Widget getFace() {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(3.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.asset(
-            card.imagePath,
-            fit: BoxFit.fitWidth,
-          ),
-        ),
-      ),
+    return Image.asset(
+      card.imagePath,
+      fit: BoxFit.fitWidth,
     );
   }
 
   Widget getBack() {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(3.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.asset(
-            'assets/images/cards/back/back.png',
-            fit: BoxFit.fitWidth,
-          ),
-        ),
+    return ColorFiltered(
+      colorFilter: ColorFilter.mode(Colors.greenAccent.withOpacity(0.4), BlendMode.screen),
+      child: Image.asset(
+        'assets/images/cards/back/back.png',
+        fit: BoxFit.fitWidth,
       ),
     );
   }
