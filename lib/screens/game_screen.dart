@@ -1,8 +1,6 @@
 import 'package:del_flip_card_game/controllers/game_controller.dart';
-import 'package:del_flip_card_game/models/game_timer.dart';
 import 'package:del_flip_card_game/widgets/cards_grid.dart';
 import 'package:del_flip_card_game/widgets/game_timer_widget.dart';
-import 'package:del_flip_card_game/widgets/game_title.dart';
 import 'package:del_flip_card_game/widgets/restart_button.dart';
 import 'package:del_flip_card_game/widgets/score_progress.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +27,12 @@ class _GameScreenState extends State<GameScreen> {
         right: width / 60,
       ),
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage('assets/images/bg.jpg'), fit: BoxFit.cover)
+        image: DecorationImage(
+          image: AssetImage('assets/images/bg.png'),
+          fit: BoxFit.cover,
+        ),
       ),
-      child:           Column(
+      child: Column(
         children: [
           const GameTimerWidget(),
           SizedBox(
@@ -53,8 +54,3 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 }
-
-
-
-
-
