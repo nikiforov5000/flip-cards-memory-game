@@ -36,11 +36,24 @@ class GameController {
 
     _list.clear();
     for (int i = 0; i < cardsQuantity / 2; ++i) {
-      String imgPath = frontImage.getRandomFrontImage();
-      _list.add(FlippingCard(imagePath: imgPath, label: i + 1));
-      _list.add(FlippingCard(imagePath: imgPath, label: i + 1));
+      String imagePath = frontImage.getRandomFrontImage();
+      _list.add(FlippingCard(
+        label: i + 1,
+        imagePath: imagePath,
+        angle: _getRandomAngle(),
+      ));
+      _list.add(FlippingCard(
+        label: i + 1,
+        imagePath: imagePath,
+        angle: _getRandomAngle(),
+      ));
     }
     _list.shuffle();
+  }
+  static double _getRandomAngle() {
+    Random random = Random();
+    int degrees = (random.nextInt(3) + 2) * (random.nextBool() ? -1 : 1);
+    return degrees * (pi / 180);
   }
 
   static void flipCard(int index) {

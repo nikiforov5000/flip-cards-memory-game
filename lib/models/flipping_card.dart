@@ -3,5 +3,6 @@ class FlippingCard {
   bool isFlipped = false;
   String imagePath;
   final int label;
-  FlippingCard({required this.label, required this.imagePath});
+  final double angle;
+  FlippingCard({required this.label, required this.imagePath, required this.angle});
 }
