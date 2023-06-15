@@ -44,9 +44,12 @@ class FlippingCardWidget extends StatelessWidget {
   }
 
   Widget getBack() {
-    return Image.asset(
-      'assets/images/cards/back/back.png',
-      fit: BoxFit.cover,
+    return ColorFiltered(
+        colorFilter: ColorFilter.mode(Colors.blue.withOpacity(.5), BlendMode.screen),
+      child: Image.asset(
+        'assets/images/cards/back/back.png',
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
