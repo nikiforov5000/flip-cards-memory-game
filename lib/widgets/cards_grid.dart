@@ -23,13 +23,10 @@ class _CardsGridState extends State<CardsGrid> {
       for (int j = 0; j < side; ++j) {
         int index = (i * side + j).toInt();
         row.add(Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: FlippingCardWidget(onTap: () {
-              tapCard(index);
-            },
-            card: GameController.list[index],),
-          ),
+          child: FlippingCardWidget(onTap: () {
+            tapCard(index);
+          },
+          card: GameController.list[index],),
         ),);
       }
       col.add(
