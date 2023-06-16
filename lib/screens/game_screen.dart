@@ -58,52 +58,56 @@ class LogoTimerStartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        children: [
-          Container(
-            padding: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-            color: Colors.purpleAccent,
-              borderRadius: BorderRadius.circular(20)
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: SizedBox(
+        height: 200,
+        width: 200,
+        child: Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            Container(
+              padding: EdgeInsets.all(8),
+              color: Colors.purpleAccent,
+              child: ClipRRect(borderRadius: BorderRadius.circular(20),
+                  child: Image.asset('assets/images/square-logo.png')),
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset('assets/images/square-logo.png'),
-            ),
-          ),
-          StreamBuilder(
-            stream: GameTimer.timeStream,
-            builder: (BuildContext context, snapshot) {
-              double value = GameTimer.percentLeft();
-              return LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  final double currentWidth = constraints.maxWidth * value;
-                  return Container(
-                    width: constraints.maxWidth,
-                    height: currentWidth,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      backgroundBlendMode: BlendMode.difference,
-                    ),
-                    child: GameTimer.gameOver
-                        ? Container(
-                            color: Colors.red.withOpacity(.8),
-                            child: Icon(
-                              Icons.restart_alt,
-                              size: currentWidth,
-                              color: Colors.yellow.withOpacity(.8),
-                            ),
+            StreamBuilder(
+              stream: GameTimer.timeStream,
+              builder: (BuildContext context, snapshot) {
+                double value = GameTimer.percentLeft();
+                return LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    final double currentHeight = constraints.maxHeight * value;
+                    return Container(
+                      width: constraints.maxHeight,
+                      height: currentHeight,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        backgroundBlendMode: BlendMode.difference,
+                      ),
+                      child: GameTimer.gameOver
+                          ? InkWell(
+                            onTap: () {
+                              GameController.restart();
+                            },
+                            child: Container(
+                                color: Colors.red.withOpacity(.8),
+                                child: Icon(
+                                  Icons.restart_alt,
+                                  size: currentHeight,
+                                  color: Colors.yellow.withOpacity(.8),
+                                ),
+                              ),
                           )
-                        : Container(),
-                  );
-                },
-              );
-            },
-          ),
-        ],
+                          : Container(),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
     ;
