@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:del_flip_card_game/constants/colors.dart';
 import 'package:del_flip_card_game/models/flipping_card.dart';
 import 'package:del_flip_card_game/models/front_image.dart';
 import 'package:del_flip_card_game/models/game_timer.dart';
@@ -38,11 +39,13 @@ class GameController {
     for (int i = 0; i < cardsQuantity / 2; ++i) {
       String imagePath = frontImage.getRandomFrontImage();
       _list.add(FlippingCard(
+        color: pickRandomToxicColor(),
         label: i + 1,
         imagePath: imagePath,
         angle: _getRandomAngle(),
       ));
       _list.add(FlippingCard(
+        color: pickRandomToxicColor(),
         label: i + 1,
         imagePath: imagePath,
         angle: _getRandomAngle(),
