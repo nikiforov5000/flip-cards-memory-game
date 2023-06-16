@@ -1,3 +1,4 @@
+import 'package:del_flip_card_game/constants/colors.dart';
 import 'package:del_flip_card_game/controllers/game_controller.dart';
 import 'package:del_flip_card_game/widgets/cards_grid.dart';
 import 'package:del_flip_card_game/widgets/logo_timer_start_button.dart';
@@ -19,12 +20,7 @@ class _GameScreenState extends State<GameScreen> {
     final double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/bg.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        color: kToxicBlackColor,
         child: Column(
           children: [
             const LogoTimerStartButton(),

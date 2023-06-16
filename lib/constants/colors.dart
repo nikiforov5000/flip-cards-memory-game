@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 const kToxicGreenColor = Color(0xffD0F902);
@@ -11,3 +13,21 @@ const kToxicDarkGreenColor = Color(0xffADDB0B);
 const kToxicBlueColor = Color(0xff01BFEA);
 const kToxicWhiteColor = Color(0xffE0EBE8);
 const kToxicBlackColor = Color(0xff020002);
+
+Color pickRandomToxicColor() {
+  Random random = Random();
+  int index = random.nextInt(cardsBackFrameColors.length);
+  return cardsBackFrameColors[index];
+}
+
+const cardsBackFrameColors = [
+  kToxicGreenColor,
+  kToxicTealColor,
+  kToxicRedColor,
+  kToxicCyanColor,
+  kToxicYellowColor,
+  kToxicLeafGreenColor,
+  kToxicPurpleColor,
+  kToxicDarkGreenColor,
+  kToxicBlueColor,
+];

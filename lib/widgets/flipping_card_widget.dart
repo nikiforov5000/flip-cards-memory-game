@@ -18,7 +18,7 @@ class FlippingCardWidget extends StatelessWidget {
           margin: EdgeInsets.all(3),
           padding: EdgeInsets.all(3),
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.3),
@@ -45,10 +45,13 @@ class FlippingCardWidget extends StatelessWidget {
 
   Widget getBack() {
     return ColorFiltered(
-        colorFilter: ColorFilter.mode(Colors.blue.withOpacity(.5), BlendMode.screen),
-      child: Image.asset(
-        'assets/images/cards/back/back.png',
-        fit: BoxFit.cover,
+        colorFilter: ColorFilter.mode(card.color, BlendMode.overlay),
+      child: ColorFiltered(
+        colorFilter: ColorFilter.mode(Colors.white, BlendMode.difference),
+        child: Image.asset(
+          'assets/images/cards/back/back.png',
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
