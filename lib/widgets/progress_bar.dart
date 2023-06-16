@@ -11,20 +11,21 @@ class ProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(
-          color: Colors.black.withOpacity(0.5),
-          offset: Offset(5, 5),
-          blurRadius: 10,
-        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            offset: Offset(5, 5),
+            blurRadius: 10,
+          ),
         ],
-        borderRadius: BorderRadius.circular(99),
+        borderRadius: BorderRadius.circular(5),
         border: Border.all(
-          color: Color(0x99eeaa00),
+          color: Color(0xdbff00c3),
           width: 3,
         ),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(99),
+        borderRadius: BorderRadius.circular(5),
         child: SizedBox(
           height: 50,
           child: Stack(
@@ -70,7 +71,7 @@ class ProgressForeground extends StatelessWidget {
 }
 
 class ProgressBackground extends StatelessWidget {
-  const ProgressBackground({
+  const   ProgressBackground({
     Key? key,
   }) : super(key: key);
 
@@ -78,7 +79,7 @@ class ProgressBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0x666666ff),
+        color: Colors.black,
       ),
     );
   }
