@@ -10,7 +10,7 @@ class LogoBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8),
-      color: kToxicWhiteColor,
+      color: kToxicBlueColor,
       child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Image.asset('assets/images/square-logo.png')),
