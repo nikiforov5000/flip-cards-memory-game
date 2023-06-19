@@ -20,7 +20,13 @@ class _GameScreenState extends State<GameScreen> {
     final double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Container(
-        color: kToxicBlackColor,
+        // color: kToxicLeafGreenColor,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bg.png'),
+            fit: BoxFit.cover,
+          )
+        ),
         child: Column(
           children: [
             const LogoTimerStartButton(),
