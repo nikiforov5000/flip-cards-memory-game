@@ -1,3 +1,4 @@
+import 'package:del_flip_card_game/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class ProgressBar extends StatelessWidget {
@@ -10,7 +11,9 @@ class ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
+        color: kToxicBlueColor,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.3),
@@ -18,14 +21,10 @@ class ProgressBar extends StatelessWidget {
             blurRadius: 10,
           ),
         ],
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(
-          color: Color(0xdbff00c3),
-          width: 3,
-        ),
+        borderRadius: BorderRadius.circular(19),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(15),
         child: SizedBox(
           height: 50,
           child: Stack(
@@ -79,7 +78,7 @@ class ProgressBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: kToxicWhiteColor,
       ),
     );
   }

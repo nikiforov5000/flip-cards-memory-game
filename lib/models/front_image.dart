@@ -2,7 +2,7 @@ import 'dart:math';
 
 class FrontImage {
   final Random _random = Random();
-  final int _quantityOfFrontImages = 18;
+  final int _quantityOfFrontImages = 28;
   List<bool> _visited = [];
   final Map<int, String> _imagePaths = {};
 

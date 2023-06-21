@@ -46,12 +46,9 @@ class FlippingCardWidget extends StatelessWidget {
   Widget getBack() {
     return ColorFiltered(
         colorFilter: ColorFilter.mode(card.color, BlendMode.overlay),
-      child: ColorFiltered(
-        colorFilter: ColorFilter.mode(Colors.white, BlendMode.difference),
-        child: Image.asset(
-          'assets/images/cards/back/back.png',
-          fit: BoxFit.cover,
-        ),
+      child: Image.asset(
+        'assets/images/cards/back/back.png',
+        fit: BoxFit.cover,
       ),
     );
   }

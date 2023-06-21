@@ -14,8 +14,8 @@ class ProgressFillingBox extends StatelessWidget {
       width: _maxHeight,
       height: _currentHeight,
       decoration: const BoxDecoration(
-        color: Colors.red,
-        backgroundBlendMode: BlendMode.difference,
+        color: Colors.white,
+        backgroundBlendMode: BlendMode.saturation,
       ),
       child: GameTimer.gameOver ? RestartButton(_currentHeight) : Container(),
     );
