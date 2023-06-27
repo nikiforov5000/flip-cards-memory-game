@@ -15,6 +15,7 @@ class GameController {
   static int cardsQuantity = 16;
 
   static int solved = 0;
+  static int totalSolved = 0;
 
   static StreamController<double> scoreStreamController = StreamController();
 
@@ -85,6 +86,7 @@ class GameController {
     _list[index].isMatched = true;
     _list[_prev].isMatched = true;
     if (scores == 1) {
+      totalSolved = solved;
       nextLevel();
     }
   }

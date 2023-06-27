@@ -17,7 +17,7 @@ class ProgressFillingBox extends StatelessWidget {
         color: Colors.white,
         backgroundBlendMode: BlendMode.saturation,
       ),
-      child: GameTimer.gameOver ? RestartButton(_currentHeight) : Container(),
+      child: GameTimer.isGameOver ? RestartButton(_currentHeight) : Container(),
     );
   }
 }
