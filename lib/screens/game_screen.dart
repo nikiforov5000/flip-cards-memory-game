@@ -1,4 +1,4 @@
-import 'package:del_flip_card_game/constants/colors.dart';
+import 'package:del_flip_card_game/constants/text_styles.dart';
 import 'package:del_flip_card_game/controllers/game_controller.dart';
 import 'package:del_flip_card_game/widgets/cards_grid.dart';
 import 'package:del_flip_card_game/widgets/logo_timer_start_button.dart';
@@ -22,15 +22,13 @@ class _GameScreenState extends State<GameScreen> {
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/bg.png'),
-            fit: BoxFit.cover,
-          )
-        ),
+            image: DecorationImage(
+          image: AssetImage('assets/images/bg.png'),
+          fit: BoxFit.cover,
+        )),
         child: Column(
           children: [
             GameProgressBloc(),
-
             SizedBox(
               height: height / 50,
             ),
@@ -54,41 +52,69 @@ class GameProgressBloc extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
 
-    return Column(
+    return StreamBuilder(
+      stream: GameController.scoresStream,
+      builder: (BuildContext context, snapshot) {
+        double? value;
+        if (snapshot.data != null) {
+          value = snapshot.data as double?;
+        }
+        return Column(
+          children: [
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ShowLevel(),
+                ShowTotalSolved(),
+              ],
+            ),
+            const LogoTimerStartButton(),
+            ScoreProgress(value: value),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class ScoreProgress extends StatelessWidget {
+  const ScoreProgress({
+    super.key,
+    required this.value,
+  });
+
+  final double? value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: AlignmentDirectional.center,
       children: [
-        SizedBox(
-          height: height / 50,
-        ),
-        StreamBuilder(
-            stream: GameController.scoresStream,
-            builder: (BuildContext context, snapshot) {
-              double? value;
-              if (snapshot.data != null) {
-                value = snapshot.data as double?;
-              }
-              return Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Level ${GameController.level}'),
-                      Text('Total solved ${GameController.totalSolved}'),
-                    ],
-                  ),
-                      const LogoTimerStartButton(),
-                  Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      ProgressBar(value: value ?? 0),
-                      ScoreTitle(),
-                    ],
-                  ),
-                ],
-              );
-            }
-        ),
+        ProgressBar(value: value ?? 0),
+        ScoreTitle(),
       ],
     );
   }
 }
 
+class ShowTotalSolved extends StatelessWidget {
+  const ShowTotalSolved({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('Total solved ${GameController.totalSolved}', style: kProgressBarTextStyle,);
+  }
+}
+
+class ShowLevel extends StatelessWidget {
+  const ShowLevel({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('Level ${GameController.level}', style: kProgressBarTextStyle,);
+  }
+}
