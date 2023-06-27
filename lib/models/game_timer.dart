@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 class GameTimer {
   static bool isRunning = false;
   static Timer? _timer;
-  static int _gameDuration = 90;
+  static int _gameDuration = 600;
   static int _timeLeft = _gameDuration;
   static bool gameOver = false;
   static final StreamController _controller = StreamController();
@@ -52,5 +52,11 @@ class GameTimer {
 
   static percentLeft() {
     return (_gameDuration - _timeLeft) / _gameDuration;
+  }
+
+  static void reduceTime() {
+    if (_gameDuration > 50) {
+      _gameDuration -= 50;
+    }
   }
 }
