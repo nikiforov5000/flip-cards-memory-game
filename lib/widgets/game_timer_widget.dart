@@ -15,7 +15,7 @@ class GameTimerWidget extends StatelessWidget {
           alignment: AlignmentDirectional.center,
           children: [
             ProgressBar(value: GameTimer.percentLeft()),
-            GameTimer.gameOver ? GameOverTitle() : TimerTitle(),
+            GameTimer.isGameOver ? GameOverTitle() : TimerTitle(),
           ],
         );
       },

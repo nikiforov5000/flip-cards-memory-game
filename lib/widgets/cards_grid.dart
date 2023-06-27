@@ -44,7 +44,7 @@ class _CardsGridState extends State<CardsGrid> {
   }
 
   void tapCard(int index) {
-    if (GameTimer.gameOver) {
+    if (GameTimer.isGameOver) {
       return;
     }
     if (GameController.isNotClickable(index)) {

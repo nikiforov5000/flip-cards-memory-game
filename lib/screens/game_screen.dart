@@ -1,8 +1,6 @@
-import 'package:del_flip_card_game/constants/colors.dart';
 import 'package:del_flip_card_game/controllers/game_controller.dart';
 import 'package:del_flip_card_game/widgets/cards_grid.dart';
-import 'package:del_flip_card_game/widgets/logo_timer_start_button.dart';
-import 'package:del_flip_card_game/widgets/score_progress.dart';
+import 'package:del_flip_card_game/widgets/game_progress_block.dart';
 import 'package:flutter/material.dart';
 
 class GameScreen extends StatefulWidget {
@@ -20,20 +18,14 @@ class _GameScreenState extends State<GameScreen> {
     final double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Container(
-        // color: kToxicLeafGreenColor,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/bg.png'),
-            fit: BoxFit.cover,
-          )
-        ),
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage('assets/images/bg.png'),
+          fit: BoxFit.cover,
+        )),
         child: Column(
           children: [
-            const LogoTimerStartButton(),
-            SizedBox(
-              height: height / 50,
-            ),
-            ScoreProgress(),
+            const GameProgressBloc(),
             SizedBox(
               height: height / 50,
             ),
