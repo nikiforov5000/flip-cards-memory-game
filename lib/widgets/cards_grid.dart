@@ -30,14 +30,18 @@ class _CardsGridState extends State<CardsGrid> {
       col.add(
         Expanded(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: row,
           ),
         ),
       );
     }
 
-    return Column(
-      children: col,
+    return Container(
+      color: Colors.green,
+      child: Column(
+        children: col,
+      ),
     );
   }
 

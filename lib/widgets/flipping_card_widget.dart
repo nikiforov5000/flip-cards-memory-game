@@ -65,7 +65,7 @@ class FlippingCardWidget extends StatelessWidget {
   }
 
   getSideLength(BoxConstraints constraints) {
-    sideLength = min(constraints.maxWidth, constraints.maxHeight);
+    sideLength = min(constraints.maxWidth, constraints.maxHeight) - 32;
     return sideLength;
   }
 }
