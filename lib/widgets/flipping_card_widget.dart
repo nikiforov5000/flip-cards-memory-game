@@ -20,7 +20,6 @@ class FlippingCardWidget extends StatelessWidget {
         child: LayoutBuilder(
           builder: (BuildContext context, constraints) {
             getSideLength(constraints);
-            print(sideLength);
             return Container(
               height: sideLength,
               width: sideLength,
