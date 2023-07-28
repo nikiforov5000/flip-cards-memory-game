@@ -57,14 +57,14 @@ class FlippingCardWidget extends StatelessWidget {
     return ColorFiltered(
       colorFilter: ColorFilter.mode(card.color, BlendMode.overlay),
       child: Image.asset(
-        'assets/images/cards/back/back.png',
+        'assets/images/cards/back/back.jpg',
         fit: BoxFit.cover,
       ),
     );
   }
 
   getSideLength(BoxConstraints constraints) {
-    sideLength = min(constraints.maxWidth, constraints.maxHeight) - 32;
+    sideLength = min(constraints.maxWidth, constraints.maxHeight) - 8.1;
     return sideLength;
   }
 }

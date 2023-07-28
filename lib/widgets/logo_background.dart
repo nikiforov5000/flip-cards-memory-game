@@ -13,7 +13,7 @@ class LogoBackground extends StatelessWidget {
       color: kToxicBlueColor,
       child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.asset('assets/images/square-logo.png')),
+          child: Image.asset('assets/images/square-logo.jpg')),
     );
   }
 }

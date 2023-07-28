@@ -20,7 +20,7 @@ class _GameScreenState extends State<GameScreen> {
       child: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/images/bg.png'),
+          image: AssetImage('assets/images/bg.jpg'),
           fit: BoxFit.cover,
         )),
         child: Column(
