@@ -37,11 +37,8 @@ class _CardsGridState extends State<CardsGrid> {
       );
     }
 
-    return Container(
-      color: Colors.green,
-      child: Column(
-        children: col,
-      ),
+    return Column(
+      children: col,
     );
   }
 
