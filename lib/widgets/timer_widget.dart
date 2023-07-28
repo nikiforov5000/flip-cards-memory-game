@@ -13,19 +13,15 @@ class TimerWidget extends StatelessWidget {
     );
   }
 
-  String makeString(int data) {
-    String minutes = (data / 600).floor().toString();
-    String seconds = (data % 600 / 10).floor().toString();
-    String tenthsOfSecond = (data % 10).toString();
+  String makeString(int sec) {
+    String minutes = (sec / 60).floor().toString();
+    String seconds = (sec % 60).toString();
     if (minutes.length < 2) {
       minutes = '0$minutes';
     }
     if (seconds.length < 2) {
       seconds = '0$seconds';
     }
-    if (tenthsOfSecond.length < 2) {
-      tenthsOfSecond = '0$tenthsOfSecond';
-    }
-    return '$minutes:$seconds.$tenthsOfSecond';
+    return '$minutes:$seconds';
   }
 }
