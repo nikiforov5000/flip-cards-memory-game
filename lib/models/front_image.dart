@@ -9,7 +9,7 @@ class FrontImage {
   FrontImage() {
     _visited = List.generate(_quantityOfFrontImages, (index) => false);
     for (int i = 0; i < _quantityOfFrontImages; ++i) {
-      _imagePaths[i] = 'assets/images/cards/front/$i.png';
+      _imagePaths[i] = 'assets/images/cards/front/$i.jpg';
     }
   }
 

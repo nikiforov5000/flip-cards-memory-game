@@ -11,7 +11,7 @@ class GameTitle extends StatelessWidget {
         image: DecorationImage(
           colorFilter: ColorFilter.mode(Colors.transparent, BlendMode.screen),
           image: AssetImage(
-            'assets/images/logo.png',
+            'assets/images/logo.jpg',
           ),
         )
       ),
