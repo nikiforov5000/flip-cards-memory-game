@@ -2,6 +2,9 @@
 
 Try it here --> https://flip2find.web.app/#/
 
+<img src="https://github.com/nikiforov5000/flip-cards-memory-game/blob/master/screenshots/flip-2-find_1.png" width=250px>   <img src="https://github.com/nikiforov5000/flip-cards-memory-game/blob/master/screenshots/flip-2-find_2.png" width=250px>
+
+
 This repository contains the source code for a fun and engaging memory card game built with Flutter. The goal of the game is to match pairs of cards with the same image, while trying to remember where each card is located.
 
 ## Features
